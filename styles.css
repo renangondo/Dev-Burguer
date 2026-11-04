@@ -27,6 +27,7 @@ button {
     padding: 10px;
     cursor: pointer;
     font-weight: bold;
+    width: 110px;
 }
 
 button:hover {
@@ -37,8 +38,25 @@ ul {
     list-style: none;
     display: grid;
     grid-template-columns: 200px 200px 200px;
+    gap: 20px;
+    justify-content: center;
+}
+
+li {
+    border: 2px solid #8133ff;
+    border-radius: 10px;
+    padding: 5px;
 }
 
 img {
-    width: 200px;
+    width: 100%;
+}
+
+p {
+    color: #ffffff;
+}
+
+.item-price {
+    font-weight: bold;
+    color: #79cb15;
 }

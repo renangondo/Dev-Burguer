@@ -4,21 +4,24 @@ const buttonMap = document.querySelector(".map-all")
 const buttonReduce = document.querySelector(".reduce-soma")
 const buttonFilter = document.querySelector(".filter-vegano")
 
+function formatCurrency(value) {
+    const newValue = value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+    return newValue
+}
+
 
 function showAll(productsArray) {
-    myLi = ''
+   let myLi = ''
     productsArray.forEach(products => {
         myLi = myLi + `
         <li>
-            <img src= ${products.src}
+            <img src= ${products.src}>
             <p>${products.name}</p>
-            <p class="item-price">R$ ${products.price}</p>
+            <p class="item-price">${formatCurrency(products.price)}</p>
         </li> `
     })
     list.innerHTML = myLi
 }
-
-
 
 function mapDesconto() {
     const newPrices = menuOptions.map(products => ({
@@ -34,18 +37,21 @@ function mapDesconto() {
 function reduceSoma() {
     const somaReduce = menuOptions.reduce((acc, value) => acc + value.price, 0)
 
-        list.innerHTML = `
+    list.innerHTML = `
             <li>
-                <p>O valor total dos Itens é: ${somaReduce}</p>
+                <p>O valor total dos Itens é: ${formatCurrency(somaReduce)}</p>
             </li> 
         `
 }
 
 function filterVegano() {
-
+    const veganoFilter = menuOptions.filter((products) => products.vegan === true)
+        showAll(veganoFilter)
 }
+
 
 
 buttonShowAll.addEventListener('click', () => showAll(menuOptions)) // Adicionando um função anonima para não chamar de uma vez
 buttonMap.addEventListener('click', mapDesconto)
 buttonReduce.addEventListener('click', reduceSoma)
+buttonFilter.addEventListener('click', filterVegano)
